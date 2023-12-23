@@ -3,6 +3,7 @@
 <@c.page>
     <div>
         <@l.logout />
+        <span><a href="/user"></a> User List</span>
     </div>
     <div>
         <form method="post">
@@ -18,13 +19,13 @@
         <button type="submit">Find message</button>
     </form>
     <#list messages as message>
-    <div>
-        <b>${message.id}</b>
-        <span>${message.text}</span>
-        <i>${message.tag}</i>
-        <strong>${message.authorName}</strong>
-    </div>
-        <#else>
+        <div>
+            <b>${message.id}</b>
+            <span>${message.text}</span>
+            <i>${message.tag}</i>
+            <strong>${message.authorName}</strong>
+        </div>
+    <#else>
         No messages
     </#list>
 </@c.page>
