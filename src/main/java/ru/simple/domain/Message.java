@@ -1,6 +1,7 @@
 package ru.simple.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import javax.annotation.processing.Generated;
 
@@ -9,6 +10,8 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotBlank(message = "Please fill the message")
+
     private String text;
     private String tag;
     @ManyToOne(fetch = FetchType.EAGER)
