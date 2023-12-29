@@ -3,6 +3,7 @@ package ru.simple.service;
 import freemarker.template.utility.StringUtil;
 import io.micrometer.common.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,6 +26,9 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Value("${hostname}")
+    private String hostname;
 
     public UserService(UserRepo userRepo) {
         this.userRepo = userRepo;
@@ -63,8 +67,9 @@ public class UserService implements UserDetailsService {
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
                     "Hello, %s! \n" +
-                            "Welcome to Sweater! Please, visit next link: http://localhost/activate/%s",
+                            "Welcome to Sweater! Please, visit next link: http://%s/activate/%s",
                     user.getUserName(),
+                    hostname,
                     user.getActivationCode()
             );
 
