@@ -3,8 +3,6 @@ package ru.simple.domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
-import javax.annotation.processing.Generated;
-
 @Entity
 public class Message {
     @Id
