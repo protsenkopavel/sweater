@@ -2,6 +2,10 @@ package ru.simple.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import ru.simple.domain.util.MessageHelper;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Message {
@@ -16,6 +20,14 @@ public class Message {
     @JoinColumn(name = "user_id")
     private User author;
     private String filename;
+
+    @ManyToMany
+    @JoinTable(
+            name = "messages_likes",
+            joinColumns = {@JoinColumn(name = "message_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")}
+    )
+    private Set<User> likes = new HashSet<>();
 
     public Message() {
     }
@@ -51,7 +63,7 @@ public class Message {
     }
 
     public String getAuthorName(){
-        return author != null ? author.getUsername() : "<none>";
+        return MessageHelper.getAuthorName(author);
     }
 
     public User getAuthor() {
@@ -68,5 +80,13 @@ public class Message {
 
     public void setFilename(String filename) {
         this.filename = filename;
+    }
+
+    public Set<User> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Set<User> likes) {
+        this.likes = likes;
     }
 }

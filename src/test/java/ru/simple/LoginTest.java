@@ -9,7 +9,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import ru.simple.controller.MainController;
+import ru.simple.controller.MessageController;
 
 import static org.hamcrest.core.StringContains.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -27,7 +27,7 @@ public class LoginTest {
     private MockMvc mockMvc;
 
     @Autowired
-    MainController controller;
+    MessageController controller;
 
     @Test
     public void contextLoad() throws Exception {
