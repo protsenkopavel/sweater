@@ -23,9 +23,9 @@ public class Message {
 
     @ManyToMany
     @JoinTable(
-            name = "messages_likes",
-            joinColumns = {@JoinColumn(name = "message_id")},
-            inverseJoinColumns = {@JoinColumn(name = "user_id")}
+            name = "message_likes",
+            joinColumns = { @JoinColumn(name = "message_id") },
+            inverseJoinColumns = { @JoinColumn(name = "user_id")}
     )
     private Set<User> likes = new HashSet<>();
 
